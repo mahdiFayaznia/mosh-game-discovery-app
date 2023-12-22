@@ -22,15 +22,15 @@ function App() {
         lg: "200px 1fr",
       }}
     >
-      <GridItem area="nav" bg="#000033">
+      <GridItem area="nav">
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" bg="#000077" paddingX={4}>
+        <GridItem area="aside" paddingX={4}>
           <GenreList />
         </GridItem>
       </Show>
-      <GridItem area="main" bg="#0000ff">
+      <GridItem area="main">
         <GameGrid />
       </GridItem>
     </Grid>
