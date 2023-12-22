@@ -7,12 +7,17 @@ import {
   Spinner,
   Stack,
   Skeleton,
+  Button,
 } from "@chakra-ui/react";
 import useData from "../hooks/useData";
 import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+const GenreList = ({ onSelectGenre }: Props) => {
   // const { genres } = useGenres();
   // const { data } = useData<Genre>("/genres");
   const { data, error, loading } = useGenres();
@@ -31,7 +36,7 @@ const GenreList = () => {
       {loading && (
         <Stack paddingTop={2}>
           {skeletons.map((skeleton) => (
-            <Skeleton height="40px" />
+            <Skeleton key={skeleton} height="40px" />
           ))}
         </Stack>
       )}
@@ -45,7 +50,14 @@ const GenreList = () => {
                 borderRadius={8}
                 src={getCroppedImageUrl(genre.image_background)}
               />
-              <Text>{genre.name}</Text>
+              {/* <Text>{genre.name}</Text> */}
+              <Button
+                variant="link"
+                // onClick={() => console.log("genre", genre)}
+                onClick={() => onSelectGenre(genre)}
+              >
+                {genre.name}
+              </Button>
             </HStack>
           </ListItem>
         ))}
