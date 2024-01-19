@@ -8,6 +8,7 @@ import {
   Stack,
   Skeleton,
   Button,
+  Heading,
 } from "@chakra-ui/react";
 import useData from "../hooks/useData";
 import useGenres, { Genre } from "../hooks/useGenres";
@@ -31,7 +32,11 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   // if (loading) return <Spinner />;
 
   return (
-    <div>
+    <>
+      <Heading fontSize="2xl" marginY={2}>
+        Genres
+      </Heading>
+
       {error && <></>}
 
       {loading && (
@@ -49,11 +54,14 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
               <Image
                 boxSize="32px"
                 borderRadius={8}
+                objectFit="cover"
                 src={getCroppedImageUrl(genre.image_background)}
               />
               {/* <Text>{genre.name}</Text> */}
               <Button
                 variant="link"
+                whiteSpace="normal"
+                textAlign="left"
                 fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
                 // onClick={() => console.log("genre", genre)}
                 onClick={() => onSelectGenre(genre)}
@@ -64,7 +72,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
           </ListItem>
         ))}
       </List>
-    </div>
+    </>
   );
 };
 
